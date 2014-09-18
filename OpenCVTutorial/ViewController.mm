@@ -21,7 +21,7 @@
 
 #pragma mark -
 #pragma mark ViewController Class Extension
-@interface ViewController ()
+@interface ViewController () <VideoSourceDelegate>
 {
     SystemSoundID m_soundExplosion;
     SystemSoundID m_soundShoot;
@@ -64,8 +64,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    // TODO: Add code here
+    
+    // Configure Video Source
+    self.videoSource = [[VideoSource alloc] init];
+    self.videoSource.delegate = self;
+    [self.videoSource startWithDevicePosition:AVCaptureDevicePositionBack];
 }
 
 // Supporting iOS5
@@ -187,6 +190,34 @@
 
 - (void)togglePanels {
     // TODO: Add code here
+}
+
+#pragma mark -
+#pragma mark VideoSource Delegate
+- (void)frameReady:(VideoFrame)frame {
+    __weak typeof(self) _weakSelf = self;
+    dispatch_sync( dispatch_get_main_queue(), ^{
+        // (1) Construct CGContextRef from VideoFrame
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+        CGContextRef newContext = CGBitmapContextCreate(frame.data,
+                                                        frame.width,
+                                                        frame.height,
+                                                        8,
+                                                        frame.stride,
+                                                        colorSpace,
+                                                        kCGBitmapByteOrder32Little |
+                                                        kCGImageAlphaPremultipliedFirst);
+        
+        // (2) Construct CGImageRef from CGContextRef
+        CGImageRef newImage = CGBitmapContextCreateImage(newContext);
+        CGContextRelease(newContext);
+        CGColorSpaceRelease(colorSpace);
+        
+        // (3) Construct UIImage from CGImageRef
+        UIImage * image = [UIImage imageWithCGImage:newImage];
+        CGImageRelease(newImage);
+        [[_weakSelf backgroundImageView] setImage:image];
+    });
 }
 
 @end
