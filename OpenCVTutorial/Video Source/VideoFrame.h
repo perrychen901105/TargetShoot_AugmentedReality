@@ -15,9 +15,9 @@ struct VideoFrame
 {
     size_t width;
     size_t height;
-    size_t stride;
+    size_t stride;      // be given by the number of bytes per row.
     
-    unsigned char * data;
+    unsigned char * data;   // a pointer to the actual video data.
 };
 
 #endif
