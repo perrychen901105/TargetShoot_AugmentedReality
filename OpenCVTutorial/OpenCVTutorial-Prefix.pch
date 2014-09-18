@@ -1,0 +1,19 @@
+//
+// Prefix header for all source files of the 'OpenCVTutorial' target in the 'OpenCVTutorial' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+//
+// Set kUSE_TRACKING_HELPER to 1 if you require assistance with marker tracking, otherwise 0
+//
+#define kUSE_TRACKING_HELPER    0
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
