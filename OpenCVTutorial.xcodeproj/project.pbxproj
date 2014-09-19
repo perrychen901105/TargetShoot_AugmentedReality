@@ -530,7 +530,7 @@
 				INFOPLIST_FILE = "OpenCVTutorial/OpenCVTutorial-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6530b4ed-5f47-4f6f-a96d-844d2201cbbc";
+				PROVISIONING_PROFILE = "8873aa81-e2e4-4b21-b8dc-6ba0c76049f1";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -545,7 +545,7 @@
 				INFOPLIST_FILE = "OpenCVTutorial/OpenCVTutorial-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6530b4ed-5f47-4f6f-a96d-844d2201cbbc";
+				PROVISIONING_PROFILE = "8873aa81-e2e4-4b21-b8dc-6ba0c76049f1";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

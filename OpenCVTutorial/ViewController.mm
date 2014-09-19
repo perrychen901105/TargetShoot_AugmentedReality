@@ -69,6 +69,8 @@
     self.videoSource = [[VideoSource alloc] init];
     self.videoSource.delegate = self;
     [self.videoSource startWithDevicePosition:AVCaptureDevicePositionBack];
+    
+    [self loadGameControls];
 }
 
 // Supporting iOS5
@@ -101,6 +103,29 @@
 #pragma mark IBAction Methods
 - (IBAction)pressTrigger:(id)sender {
     // TODO: Add code here
+    NSInteger ring = [self selectRandomRing];
+    switch (ring) {
+        case 5:
+            [self hitTargetWithPoints:kPOINTS_5];
+            break;
+        case 4:
+            [self hitTargetWithPoints:kPOINTS_4];
+            break;
+        case 3:
+            [self hitTargetWithPoints:kPOINTS_3];
+            break;
+        case 2:
+            [self hitTargetWithPoints:kPOINTS_2];
+            break;
+        case 1:
+            [self hitTargetWithPoints:kPOINTS_1];
+            break;
+        case 0:
+            [self missTarget];
+            break;
+        default:
+            break;
+    }
     NSLog(@"Fire!");
 }
 
@@ -172,6 +197,14 @@
 #pragma mark Game Play
 - (void)hitTargetWithPoints:(NSInteger)points {
     // TODO: Add code here
+    // 1 Play the hit sound
+    AudioServicesPlaySystemSound(m_soundExplosion);
+    
+    // 2 Animate the floating scores
+    [self showFloatingScore:points];
+    
+    // 3 Update the score
+    [self setScore:(self.score + points)];
 }
 
 - (void)missTarget {

@@ -6,6 +6,12 @@
 //  Copyright (c) 2013 Razeware LLC. All rights reserved.
 //
 
+static const NSUInteger kPOINTS_1 = 50;
+static const NSUInteger kPOINTS_2 = 100;
+static const NSUInteger kPOINTS_3 = 250;
+static const NSUInteger kPOINTS_4 = 500;
+static const NSUInteger kPOINTS_5 = 1000;
+
 @interface ViewController : UIViewController
 
 #pragma mark -
