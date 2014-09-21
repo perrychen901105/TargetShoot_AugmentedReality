@@ -28,6 +28,7 @@
         CGSize spriteSizeNormalized = CGSizeMake(size.width/CGImageGetWidth(image), size.height/CGImageGetHeight(image));
         self.bounds = CGRectMake(0, 0, size.width, size.height);
         self.contentsRect = CGRectMake(0, 0, spriteSizeNormalized.width, spriteSizeNormalized.height);
+        NSLog(@"the spriteSizeNormalized is %@, self.bounds is %@, self.contentsRect is %@",NSStringFromCGSize(spriteSizeNormalized),NSStringFromCGRect(self.bounds),NSStringFromCGRect(self.contentsRect));
     }
     return self;
 }

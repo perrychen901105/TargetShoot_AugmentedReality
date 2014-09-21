@@ -209,6 +209,8 @@
 
 - (void)missTarget {
     // TODO: Add code here
+    // 1 play the miss sound
+    AudioServicesPlaySystemSound(m_soundShoot);
 }
 
 #pragma mark -
