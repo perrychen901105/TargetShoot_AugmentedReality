@@ -140,6 +140,33 @@ static const CGFloat kDurationFade = 1.25f;
 
 - (void)showExplosion {
     // TODO: Add code here
+    // 1 Create the explosion sprite
+    /*
+     * Create a new instance of SpriteLayer.
+     */
+    UIImage *explosionImageOrig = [UIImage imageNamed:@"explosion.png"];
+    CGImageRef explosionImageCopy = CGImageCreateCopy(explosionImageOrig.CGImage);
+    CGSize explosionSize = CGSizeMake(128, 128);
+    SpriteLayer *sprite = [SpriteLayer layerWithImage:explosionImageCopy spriteSize:explosionSize];
+    CFRelease(explosionImageCopy);
+    
+    // 2 Position the explosion sprite
+    CGFloat xOffset = -7.0f; CGFloat yOffset = -3.0f;
+    sprite.position = CGPointMake(self.crosshairs.center.x + xOffset,
+                                  self.crosshairs.center.y + yOffset);
+    
+    // 3 Add to the view
+    [self.view.layer addSublayer:sprite];
+    
+    // 4 Configure and run the animation
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"spriteIndex"];
+    animation.fromValue = @(1);
+    animation.toValue = @(12);
+    animation.duration = 0.45f;
+    animation.repeatCount = 1;
+    animation.delegate = sprite;
+    
+    [sprite addAnimation:animation forKey:nil];
 }
 
 @end
